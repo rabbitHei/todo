@@ -21,5 +21,28 @@
 		vm.todoList = todoList;
 
 
+		// 2 添加任务
+		vm.taskName = ''; // 用户输入的任务名称
+		vm.add = function () {
+			if (vm.taskName.trim() === '') {
+				return;
+			}
+
+			var id,
+				length = todoList.length;
+
+			// 如果数组中没有值，那么添加项的id就是：1
+			// 如果数组中右值，那么就取数组最后一项的id，再加1
+			if (length === 0) {
+				id = 1;
+			} else {
+				// 获取数组最后一项的id值，再加1，就是当前项的id值
+				id = todoList[todoList.length - 1].id + 1;
+			}
+
+			todoList.push({ id: id, name: vm.taskName, isCompleted: false });
+			vm.taskName = '';
+		};
+
 	}
 })(angular);
