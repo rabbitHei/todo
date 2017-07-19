@@ -6,9 +6,6 @@
 			var info = myService.getInfo();
 			$scope.info=info;
 
-			//unfinished num
-			$scope.num= myService.items
-			
 			// add new data
 			$scope.newInfo='';
 			$scope.add = function(){
@@ -50,11 +47,6 @@
 				myService.saveInfo()
 			}
 
-			//cekClick
-			$scope.cekClick=function(){
-				$scope.allCheck=myService.statu()	
-			};
-			
 			// hash change
 			hashChange();
 			$window.addEventListener('hashchange',function(){
@@ -77,6 +69,12 @@
 					default:
 					$scope.isCompelted=undefined;
 				}
+			}
+
+			//unfinished num
+			$scope.num= function(){
+				$scope.allCheck=myService.statu()	
+				return	myService.items($scope.allCheck)
 			}
 		}
 }(angular))
