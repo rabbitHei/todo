@@ -5,26 +5,34 @@
 			// render data
 			var info = myService.getInfo();
 			$scope.info=info;
-			//
-			$scope.$watch('info',function(newinfo,oldinfo){
-				$scope.num= myService.items()
-			},true)
+
+			//unfinished num
+			$scope.num= myService.items
 			
 			// add new data
 			$scope.newInfo='';
 			$scope.add = function(){
 				myService.addInfo($scope.newInfo)
+				$scope.allCheck=myService.statu()
 				$scope.newInfo='';
 			}
 
 			// delete data
-			$scope.delete=myService.del;
+			$scope.delete=function(id){
+				myService.del(id);
+				$scope.allCheck=myService.statu();
+			};
 
 			//choose all or not
+			$scope.allCheck=myService.statu()	
 			$scope.allSelect=myService.allSelect
 
 			//clear all completed
-			$scope.clearAll=myService.clearAll;
+			$scope.clearAll=function(){
+				myService.clearAll();
+				$scope.allCheck=myService.statu()	
+			}
+			
 			$scope.isShow=myService.isShow;
 
 			//edit data
@@ -42,8 +50,13 @@
 				myService.saveInfo()
 			}
 
+			//cekClick
+			$scope.cekClick=function(){
+				$scope.allCheck=myService.statu()	
+			};
+			
 			// hash change
-			$scope.isCompelted=undefined;
+			hashChange();
 			$window.addEventListener('hashchange',function(){
 				$scope.$apply(function(){
 					hashChange()

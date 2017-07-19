@@ -15,6 +15,7 @@
 					if(!v.statu)
 					num++
 				})
+				that.saveInfo()
 				return num
 			}
 			//saveInfo
@@ -50,7 +51,15 @@
 						v.statu=true;
 					});	
 				}
+				that.saveInfo();
 			}
+			that.statu=function(){
+				if(info.length==0){return false}
+				return	info.every(function(v){
+					return v.statu===true;
+				})
+			}
+
 			//clear all 
 			that.clearAll=function(){
 				var num =0;
@@ -63,6 +72,7 @@
 					}
 				}
 				that.saveInfo();
+				// that.statu()
 			}
 			that.isShow=function(){
 				return info.some(function(v){return v.statu === true;})
